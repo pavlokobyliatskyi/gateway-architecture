@@ -1,9 +1,6 @@
-import {
-  ArgumentMetadata,
-  BadRequestException,
-  PipeTransform,
-} from '@nestjs/common';
+import { ArgumentMetadata, PipeTransform } from '@nestjs/common';
 
+import { RpcException } from '@nestjs/microservices';
 import { ZodSchema } from 'zod';
 
 export class ZodValidationPipe implements PipeTransform {
@@ -13,8 +10,8 @@ export class ZodValidationPipe implements PipeTransform {
     try {
       const parsedValue = this.schema.parse(value);
       return parsedValue;
-    } catch (error) {
-      throw new BadRequestException('Validation failed');
+    } catch (e) {
+      throw new RpcException(e);
     }
   }
 }
