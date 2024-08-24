@@ -14,10 +14,10 @@ export class UsersCommands {
   ) {}
 
   @MessagePattern('users-service.create-user.command')
+  @UsePipes(EmailExistsPipe)
   @UsePipes(
     new ZodValidationPipe(UsersServiceCreateUserCommandContract.RequestSchema)
   )
-  @UsePipes(EmailExistsPipe)
   createUserCommand(
     @Payload() args: UsersServiceCreateUserCommandContract.Request
   ): UsersServiceCreateUserCommandContract.Response {
