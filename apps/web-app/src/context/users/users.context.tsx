@@ -1,5 +1,6 @@
 import {
   ApiUsersGetUsersContract,
+  ErrorResponse,
   SuccessResponse,
 } from '@gateway-architecture/contracts';
 import { PropsWithChildren, createContext, useEffect, useState } from 'react';
@@ -36,7 +37,8 @@ export const UsersProvider: React.FC<PropsWithChildren> = ({ children }) => {
         setUsers(response.data.data);
       } catch (e) {
         if (isAxiosError(e)) {
-          setError(e.response?.data?.message || 'Could not get users.');
+          const data: ErrorResponse = e.response?.data;
+          setError(data?.message || 'Could not get users.');
         } else {
         }
       } finally {

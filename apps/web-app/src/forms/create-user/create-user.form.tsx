@@ -1,5 +1,6 @@
 import {
   ApiUsersCreateUserContract,
+  ErrorResponse,
   SuccessResponse,
 } from '@gateway-architecture/contracts';
 import { useContext, useState } from 'react';
@@ -35,7 +36,8 @@ export const CreateUserForm = () => {
       });
     } catch (e) {
       if (isAxiosError(e)) {
-        console.error(e.response?.data?.message || 'Could not create a user.');
+        const data: ErrorResponse = e.response?.data;
+        console.error(data?.message || 'Could not create a user.');
       }
     }
   };
