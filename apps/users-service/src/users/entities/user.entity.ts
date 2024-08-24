@@ -3,12 +3,12 @@ import * as uuid from 'uuid';
 import { IUser } from '../interfaces/user.interface';
 
 export class UserEntity implements IUser {
-  id?: string;
+  id: string;
   firstName: string;
   lastName: string;
   email: string;
   username: string;
-  createdAt?: Date;
+  createdAt: Date;
 
   constructor(args: Omit<IUser, 'id' | 'createdAt'>) {
     this.id = uuid.v4();

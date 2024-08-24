@@ -11,7 +11,7 @@ export class UserRepository {
     return args;
   }
 
-  find() {
+  find(): Required<UserEntity[]> {
     return this.database;
   }
 
