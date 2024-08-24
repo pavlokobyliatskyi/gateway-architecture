@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@gateway-architecture/contracts": ["libs/contracts/src/index.ts"]
-    }
+    },
+    "strictPropertyInitialization": false
   },
   "exclude": ["node_modules", "tmp"]
 }
