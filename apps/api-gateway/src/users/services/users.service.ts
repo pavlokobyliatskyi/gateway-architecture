@@ -1,3 +1,4 @@
+import { UsersServiceCreateUserCommandContract } from '@gateway-architecture/contracts';
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
@@ -6,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
 export class UsersService {
   constructor(@Inject('USERS_SERVICE') private usersService: ClientProxy) {}
 
-  async createUser(args: any) {
+  async createUser(args: UsersServiceCreateUserCommandContract.Request) {
     return await firstValueFrom(
       this.usersService.send('users-service.create-user.command', args)
     );
