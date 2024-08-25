@@ -8,18 +8,18 @@ import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 import { axios } from '../../utils';
 import { isAxiosError } from 'axios';
 
-interface UsersContext {
+export interface IUsersContext {
   users: ApiUsersGetUsersContract.Response;
   isLoading: boolean;
   error: string | null;
   setUsers: (users: ApiUsersGetUsersContract.Response) => void;
 }
 
-export const UsersContext = createContext<UsersContext>({
+export const UsersContext = createContext<IUsersContext>({
   users: [],
   isLoading: false,
   error: null,
-  setUsers: () => {},
+  setUsers: () => null,
 });
 
 export const UsersProvider: React.FC<PropsWithChildren> = ({ children }) => {
@@ -39,7 +39,6 @@ export const UsersProvider: React.FC<PropsWithChildren> = ({ children }) => {
         if (isAxiosError(e)) {
           const data: ErrorResponse = e.response?.data;
           setError(data?.message || 'Could not get users.');
-        } else {
         }
       } finally {
         setIsLoading(false);
